@@ -20,7 +20,7 @@ VLINK_URL = http://sun.hasenbraten.de/vlink/daily/vlink.tar.gz
 EXO_FILE = exomizer203.zip
 EXO_URL = http://hem.bredband.net/magli143/exo/$(EXO_FILE)
 
-all: download vasm vlink exomizer idsk
+all: download vasm vlink exomizer idsk gfx2crtc
 
 # used to completly rebuild the whole toolchain
 distclean: clean
@@ -33,6 +33,7 @@ clean:
 	rm -rf $(BUILD)/exomizer
 	rm -rf $(BUILD)/iDSK
 	rm -rf $(BUILD)/caprice32
+	make -C $(BUILD)/gfx2crtc clean
 
 download:
 	wget --continue --directory-prefix=$(DOWNLOADS) $(VASM_URL)
@@ -66,3 +67,7 @@ idsk:
 	cd $(BUILD)/iDSK && ./configure && make
 	cp $(BUILD)/iDSK/src/iDSK $(BIN)
 
+gfx2crtc:
+	make -C $(BUILD)/gfx2crtc
+	cp $(BUILD)/gfx2crtc/png2crtc $(BIN)
+	cp $(BUILD)/gfx2crtc/raw2crtc $(BIN)
