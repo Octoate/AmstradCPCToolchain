@@ -21,7 +21,7 @@ Directory structure
 |_bin 		- contains binary executeables of the needed tools
 |_downloads 	- contains the downloaded versions of the different tools
 |_src 		- put the sourcecode of your program here
-|_tools 	- extracted files of the downloaded tools (the tools will be
+|_tools 	- extracted files of the (downloaded) tools (the tools will be
 		  compiled here)
 
 Help
@@ -34,7 +34,6 @@ TODO
 - add the AFT2 tool to transfer DSKs / files via the CPC Booster
 - add the dsktools to directly write DSK images to a floppy disk
 - write examples to show the usage of the tools
-- include a graphics conversion tool (e.g. PNG2crtc)
 - find a good and easy to use emulator for Linux
 
 
