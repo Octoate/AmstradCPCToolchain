@@ -15,6 +15,8 @@ clean:
 	rm -f *.o
 	rm -f *.exo
 	rm -f *.dsk
+	rm -f *.scr
+	rm -f *.bin
 
 exscreen.dsk: exscreen.bin 
 
