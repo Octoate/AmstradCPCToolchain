@@ -1,0 +1,11 @@
+   di
+   ld hl, logo
+   ld de, 0xC000
+   call deexo
+   ei
+
+   ret
+
+logo:
+   incbin "logo.exo"
+
