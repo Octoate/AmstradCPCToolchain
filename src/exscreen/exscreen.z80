@@ -1,10 +1,90 @@
+scr_set_mode = 0xbc0e
+scr_set_border = 0xbc38
+scr_set_ink = 0xbc32
+km_wait_char = 0xbb06
+
+   ;;set to black (loading invisible)
+   call set_to_black
+
+   ;;set mode 1
+   ld a, 1
+   call scr_set_mode
+
+   ;;decompress image
    di
    ld hl, logo
    ld de, 0xC000
    call deexo
    ei
 
+   ;;set colour palette
+   ld hl, colour_palette
+   call setup_colours
+
+   call km_wait_char
+
    ret
+
+;;------------------------------------------------------------------------
+;; setup colours
+;;
+;; HL = address of palette
+;; 
+;; order: pen 0, pen 1,...,pen15,border
+setup_colours:
+   ld b, 4			  ;; 4 colours
+   xor a			  ;; start with pen 0
+
+do_colours:
+   push bc
+   push af
+   ld c, (hl)		  	  ;; colour value
+   inc hl
+   ld b, c			  ;; B=C so colours will not flash
+   push hl
+				  ;; A = pen number
+				  ;; B,C = colour
+   call scr_set_ink		  ;; set colour for pen
+   pop hl
+   pop af
+   pop bc
+				  ;; increment pen number
+   inc a
+   djnz do_colours
+
+				  ;; set border colour
+   ld c, (hl)
+   ld b, c
+   call scr_set_border	
+
+   ret
+
+;;------------------------------------------------------------------------
+;; set all colours to black
+
+set_to_black:
+   ld b, 4			   ;; 4 colours
+   xor a			   ;; initial pen index
+stb1:
+   push af
+   push bc
+   ld bc, 0			   ;; black
+   call scr_set_ink		   ;; set colour
+   pop bc
+   pop af
+   inc a			   ;; increment pen index
+   djnz stb1
+
+   ld bc, 0			   ;; black
+   call scr_set_border		   ;; set border colour
+
+   ret
+
+;;------------------------------------------------------------------------
+;; a colour palette defined using firmware colour numbers
+
+colour_palette:
+   defb 13, 0, 26, 3, 13
 
 logo:
    incbin "logo.exo"
