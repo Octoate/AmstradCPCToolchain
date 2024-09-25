@@ -9,7 +9,7 @@ BUILD = ./tools
 DOWNLOADS = ./downloads
 PWD = $(shell pwd)
 
-# VASM related vahttps://csdb.dk/release/download.php?id=252655riables
+# VASM related variables
 VASM_URL = http://sun.hasenbraten.de/vasm/release/vasm.tar.gz
 
 # VLINK related variables
