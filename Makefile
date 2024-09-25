@@ -22,7 +22,7 @@ EXO_BASE = e131c8695cb5
 EXO_FILE = $(EXO_BASE).zip
 EXO_URL = https://bitbucket.org/magli143/exomizer/get/$(EXO_FILE)
 
-# libsdk v1.4.2
+# libsdk v1.5.20
 LIBDSK_VER = libdsk-1.5.20
 LIBDSK_FILE = $(LIBDSK_VER).tar.gz
 LIBDSK_URL = http://www.seasip.info/Unix/LibDsk/$(LIBDSK_FILE)
