@@ -17,12 +17,14 @@ A "make clean" will just delete the compiled files within the "bin" directory.
 Directory structure
 ===================
 
+```
 *
 |_bin 		- contains binary executeables of the needed tools
 |_downloads 	- contains the downloaded versions of the different tools
 |_src 		- put the sourcecode of your program here
 |_tools 	- extracted files of the (downloaded) tools (the tools will be
 		  compiled here)
+```
 
 Help
 ====
